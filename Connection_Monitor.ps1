@@ -1,16 +1,16 @@
-﻿$str_time = Get-Date -Format "dd-MM-yyyy"
+$str_time = Get-Date -Format "dd-MM-yyyy"
 
 $ui_dots = 10
 
 $path = (Get-Location).Path
-
-$log = New-Item "C:\users\omadmin\desktop\logs\ping_log_($string_time).txt" -Force
 
 $lan_d = (Get-NetRoute "0.0.0.0/0" | Select-Object -Property NextHop).NextHop
 
 $wan_d = "8.8.8.8"
 
 $log_path = "$path" + "\logs\"
+
+$log = New-Item "$path" + "\ping_log_($string_time).txt" -Force
 
 If(!(test-path -PathType container $log_path))
 {
@@ -76,4 +76,5 @@ while($true)
     }
 
     clear
+    
 }
